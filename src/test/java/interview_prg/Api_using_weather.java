@@ -23,9 +23,9 @@ public class Api_using_weather {
 
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter the number:");
-			String nextInt = input.nextLine();
+			String User_enter = input.nextLine();
 			System.out.println("Enter the date:");
-			String nextLine = input.nextLine();
+			String Enterdate = input.nextLine();
 
 			int size = listofweather.size();
 
@@ -33,28 +33,29 @@ public class Api_using_weather {
 				String date = (String) listofweather.get(i).get("dt_txt");
 				String[] weatherdateandtime = date.split(" ");
 				String dateandtime = weatherdateandtime[0];
+//----->--User press one and enter the date to get Temp of the input date
+				if (User_enter.equals("1") && dateandtime.equals(Enterdate)) {
+					Map<String, Object> temperature = (Map<String, Object>) listofweather.get(i).get("main");
 
-				if (nextInt.equals("1") && dateandtime.equals(nextLine)) {
-					Map<String, Object> object = (Map<String, Object>) listofweather.get(i).get("main");
-
-					System.out.println("Temp of the input date:" + "  " + object.get("temp"));
-
-				}
-
-				if (nextInt.equals("2") && dateandtime.equals(nextLine)) {
-					Map<String, Object> object = (Map<String, Object>) listofweather.get(i).get("wind");
-
-					System.out.println("Wind.speed of the input date:" + "    " + object.get("speed"));
+					System.out.println("Temp of the input date:" + "  " + temperature.get("temp"));
 
 				}
-				if (nextInt.equals("3") && dateandtime.equals(nextLine)) {
+//----->--User press Two and enter the date to get Wind speed of the input date
+          			if (User_enter.equals("2") && dateandtime.equals(Enterdate)) {
+					Map<String, Object> speed = (Map<String, Object>) listofweather.get(i).get("wind");
 
-					Map<String, Object> object = (Map<String, Object>) listofweather.get(i).get("main");
-
-					System.out.println("Pressure of the input date:" + "  " + object.get("pressure"));
+					System.out.println("Wind.speed of the input date:" + "    " + speed.get("speed"));
 
 				}
-				if (nextInt.equals("0")) {
+//---->--User press Three and enter the date to get pressure of the input date				
+				if (User_enter.equals("3") && dateandtime.equals(Enterdate)) {
+
+					Map<String, Object> pressure1 = (Map<String, Object>) listofweather.get(i).get("main");
+
+					System.out.println("Pressure of the input date:" + "  " + pressure1.get("pressure"));
+
+				}
+				if (User_enter.equals("0")) {
 					System.exit(0);
 				}
 
